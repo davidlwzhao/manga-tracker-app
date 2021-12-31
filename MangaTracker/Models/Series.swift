@@ -11,8 +11,10 @@ class Series: Decodable, Identifiable {
     var id:UUID?
     var title:String
     var archived:Bool
+    var updated:Bool
     var image:String
     var chapters:Int
-    var lastUpdate:Date
+    var lastUpdate:String
     var source: String
+    var url: String
 }

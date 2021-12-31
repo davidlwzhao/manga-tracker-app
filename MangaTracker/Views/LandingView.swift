@@ -34,8 +34,16 @@ struct LandingView: View {
                     }
                 }
                 .tag(3)
+            AnalyticsView()
+                .tabItem {
+                    VStack {
+                        Image(systemName: "chart.xyaxis.line")
+                        Text("Analytics")
+                    }
+                }
+                .tag(4)
         }
-        //.environmentObject(RecipeModel())
+        .environmentObject(SeriesModel())
     }
 }
 

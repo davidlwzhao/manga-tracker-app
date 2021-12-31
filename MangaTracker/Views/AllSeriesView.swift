@@ -8,27 +8,47 @@
 import SwiftUI
 
 struct AllSeriesView: View {
+    
+    @EnvironmentObject var model: SeriesModel
+    
     var body: some View {
         VStack {
-            VStack {
+            VStack(alignment: .leading) {
                 Text("All Series")
+                    .font(.largeTitle)
                     .bold()
-                // filter 1
-                
-                // filter 2
+                    .padding(.leading)
+                    .padding(.top, 40)
             }
+            .frame(
+                minWidth: 0,
+                maxWidth: .infinity
+              )
             
-            VStack {
-                Image("cover-175x238")
-                Image("ASNIP-1")
-                Image("AnyConv.com__OG")
+            ScrollView {
+                ForEach(model.series) { s in
+                    Image(s.image)
+                        .resizable()
+                        .frame(width: 150, height: 200)
+                        .scaledToFill()
+                        .cornerRadius(5)
+                    Text(s.title)
+                }
             }
         }
+        .frame(
+              minWidth: 0,
+              maxWidth: .infinity,
+              minHeight: 0,
+              maxHeight: .infinity
+            )
+
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         AllSeriesView()
+            .environmentObject(SeriesModel())
     }
 }

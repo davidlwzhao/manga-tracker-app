@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Seoul Station Necromancer",
+        "archived": false,
+        "updated": true,
+        "image": "seoul-station-necro",
+        "chapters": 32,
+        "lastUpdate": "2021-12-31",
+        "source": "Reaper Scans",
+        "url": "https://reaperscans.com/all-series/"
+    },
+    {
+        "title": "Arcane Sniper",
+        "archived": false,
+        "updated": true,
+        "image": "arcane-sniper",
+        "chapters": 51,
+        "lastUpdate": "2021-12-31",
+        "source": "Reaper Scans",
+        "url": "https://reaperscans.com/all-series/"
+    },
+    {
+        "title": "Overgeared",
+        "archived": false,
+        "updated": false,
+        "image": "overgeared",
+        "chapters": 95,
+        "lastUpdate": "2021-12-31",
+        "source": "Reaper Scans",
+        "url": "https://reaperscans.com/all-series/"
+    }
+]
