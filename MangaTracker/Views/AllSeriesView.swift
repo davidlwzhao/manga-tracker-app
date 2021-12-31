@@ -9,8 +9,21 @@ import SwiftUI
 
 struct AllSeriesView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            VStack {
+                Text("All Series")
+                    .bold()
+                // filter 1
+                
+                // filter 2
+            }
+            
+            VStack {
+                Image("cover-175x238")
+                Image("ASNIP-1")
+                Image("AnyConv.com__OG")
+            }
+        }
     }
 }
 
