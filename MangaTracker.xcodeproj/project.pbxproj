@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9E220E42277F9C9C001DAAB5 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E220E41277F9C9C001DAAB5 /* AnalyticsView.swift */; };
+		9E4656D5278AFD53004B0E13 /* ReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4656D4278AFD53004B0E13 /* ReadView.swift */; };
+		9E4656D7278AFE4F004B0E13 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4656D6278AFE4F004B0E13 /* WebView.swift */; };
+		9E6FFB4E278B3F69008EBFCA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E6FFB4D278B3F69008EBFCA /* GoogleService-Info.plist */; };
+		9E92B9D2278C41700080AAC0 /* updates.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E92B9D1278C41700080AAC0 /* updates.json */; };
 		9EFB0C92277F6A9B00D90390 /* MangaTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB0C91277F6A9B00D90390 /* MangaTrackerApp.swift */; };
 		9EFB0C94277F6A9B00D90390 /* AllSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB0C93277F6A9B00D90390 /* AllSeriesView.swift */; };
 		9EFB0C96277F6A9E00D90390 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFB0C95277F6A9E00D90390 /* Assets.xcassets */; };
@@ -18,10 +22,15 @@
 		9EFB0CAD277F76EC00D90390 /* SeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB0CAC277F76EC00D90390 /* SeriesModel.swift */; };
 		9EFB0CAF277F772200D90390 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB0CAE277F772200D90390 /* Series.swift */; };
 		9EFB0CB1277F797600D90390 /* series.json in Resources */ = {isa = PBXBuildFile; fileRef = 9EFB0CB0277F797600D90390 /* series.json */; };
+		D4729496E8D18BD9BDB0ADCB /* Pods_MangaTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADF6F85EB9C229EB66706E97 /* Pods_MangaTracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9E220E41277F9C9C001DAAB5 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		9E4656D4278AFD53004B0E13 /* ReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadView.swift; sourceTree = "<group>"; };
+		9E4656D6278AFE4F004B0E13 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		9E6FFB4D278B3F69008EBFCA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E92B9D1278C41700080AAC0 /* updates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = updates.json; sourceTree = "<group>"; };
 		9EFB0C8E277F6A9B00D90390 /* MangaTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangaTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFB0C91277F6A9B00D90390 /* MangaTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaTrackerApp.swift; sourceTree = "<group>"; };
 		9EFB0C93277F6A9B00D90390 /* AllSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSeriesView.swift; sourceTree = "<group>"; };
@@ -33,6 +42,9 @@
 		9EFB0CAC277F76EC00D90390 /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
 		9EFB0CAE277F772200D90390 /* Series.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		9EFB0CB0277F797600D90390 /* series.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = series.json; sourceTree = "<group>"; };
+		ADF6F85EB9C229EB66706E97 /* Pods_MangaTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B12CC7A9D35B73A2B6EF5FB9 /* Pods-MangaTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaTracker.debug.xcconfig"; path = "Target Support Files/Pods-MangaTracker/Pods-MangaTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		D660BFE598E410B114527A5D /* Pods-MangaTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaTracker.release.xcconfig"; path = "Target Support Files/Pods-MangaTracker/Pods-MangaTracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,17 +52,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4729496E8D18BD9BDB0ADCB /* Pods_MangaTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D6B01D27DA92E87D3585142 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B12CC7A9D35B73A2B6EF5FB9 /* Pods-MangaTracker.debug.xcconfig */,
+				D660BFE598E410B114527A5D /* Pods-MangaTracker.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		926AAD8042653B2B1609F6EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ADF6F85EB9C229EB66706E97 /* Pods_MangaTracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9EFB0C85277F6A9B00D90390 = {
 			isa = PBXGroup;
 			children = (
 				9EFB0C90277F6A9B00D90390 /* MangaTracker */,
 				9EFB0C8F277F6A9B00D90390 /* Products */,
+				0D6B01D27DA92E87D3585142 /* Pods */,
+				926AAD8042653B2B1609F6EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				9EFB0C91277F6A9B00D90390 /* MangaTrackerApp.swift */,
+				9E6FFB4D278B3F69008EBFCA /* GoogleService-Info.plist */,
 				9EFB0CA2277F6BDD00D90390 /* Data */,
 				9EFB0CA1277F6BD900D90390 /* ModelViews */,
 				9EFB0CA0277F6BD500D90390 /* Views */,
@@ -100,6 +133,8 @@
 				9EFB0CA3277F6C0C00D90390 /* NewSeriesView.swift */,
 				9EFB0C93277F6A9B00D90390 /* AllSeriesView.swift */,
 				9E220E41277F9C9C001DAAB5 /* AnalyticsView.swift */,
+				9E4656D4278AFD53004B0E13 /* ReadView.swift */,
+				9E4656D6278AFE4F004B0E13 /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				9EFB0CB0277F797600D90390 /* series.json */,
+				9E92B9D1278C41700080AAC0 /* updates.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -127,9 +163,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9EFB0C9C277F6A9E00D90390 /* Build configuration list for PBXNativeTarget "MangaTracker" */;
 			buildPhases = (
+				6ACBEE066D5A940BBF866984 /* [CP] Check Pods Manifest.lock */,
 				9EFB0C8A277F6A9B00D90390 /* Sources */,
 				9EFB0C8B277F6A9B00D90390 /* Frameworks */,
 				9EFB0C8C277F6A9B00D90390 /* Resources */,
+				E123D14F68794F35BEE416F9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -179,12 +217,56 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFB0CB1277F797600D90390 /* series.json in Resources */,
+				9E6FFB4E278B3F69008EBFCA /* GoogleService-Info.plist in Resources */,
 				9EFB0C99277F6A9E00D90390 /* Preview Assets.xcassets in Resources */,
+				9E92B9D2278C41700080AAC0 /* updates.json in Resources */,
 				9EFB0C96277F6A9E00D90390 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6ACBEE066D5A940BBF866984 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MangaTracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E123D14F68794F35BEE416F9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MangaTracker/Pods-MangaTracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MangaTracker/Pods-MangaTracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MangaTracker/Pods-MangaTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9EFB0C8A277F6A9B00D90390 /* Sources */ = {
@@ -192,6 +274,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFB0C94277F6A9B00D90390 /* AllSeriesView.swift in Sources */,
+				9E4656D7278AFE4F004B0E13 /* WebView.swift in Sources */,
+				9E4656D5278AFD53004B0E13 /* ReadView.swift in Sources */,
 				9E220E42277F9C9C001DAAB5 /* AnalyticsView.swift in Sources */,
 				9EFB0CA9277F6CAB00D90390 /* LandingView.swift in Sources */,
 				9EFB0CAD277F76EC00D90390 /* SeriesModel.swift in Sources */,
@@ -323,6 +407,7 @@
 		};
 		9EFB0C9D277F6A9E00D90390 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B12CC7A9D35B73A2B6EF5FB9 /* Pods-MangaTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -351,6 +436,7 @@
 		};
 		9EFB0C9E277F6A9E00D90390 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D660BFE598E410B114527A5D /* Pods-MangaTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
