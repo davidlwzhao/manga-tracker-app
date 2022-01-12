@@ -18,6 +18,7 @@ struct MangaTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             LandingView()
+                .environmentObject(SeriesModel())
         }
     }
 }

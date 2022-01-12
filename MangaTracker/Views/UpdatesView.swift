@@ -25,32 +25,27 @@ struct UpdatesView: View {
             .background(.black)
             
             ScrollView {
-                ForEach(model.series) { s in
+                ForEach(model.updates) { u in
                     
-                    if s.updated {
+                    let s = model.series["\(u.title)-\(u.source)"]!
                     
-                        Button  {
-                            openURL(URL(string: s.url)!)
-                        } label: {
-                            HStack {
-                                Image(s.image)
-                                    .resizable()
-                                    .frame(width: 150, height: 200)
-                                    .scaledToFill()
-                                    .cornerRadius(5)
-                                VStack(alignment: .leading, spacing: 10) {
-                                    Text(s.title)
-                                        .bold()
-                                    Text("Latest Chapter:  \(s.chapters)")
-                                    Text("Last Updated:  \(s.lastUpdate)")
-                                    Text("Source: \(s.source)")
-                                }
-                                Spacer()
-                            }
+                    HStack {
+                        AsyncImage(url: URL(string: s.image))
+                            //.resizeable()
+                            .frame(width: 150, height: 200)
+                            .scaledToFill()
+                            .cornerRadius(5)
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(u.title)
+                                .bold()
+                            Text("Latest Chapter:  \(u.chapter)")
+                            Text("Last Updated:  \(u.date)")
+                            Text("Source: \(u.source)")
                         }
-                        Divider()
-
+                        Spacer()
                     }
+                    
+                    Divider()
                 }
             }
             .padding()

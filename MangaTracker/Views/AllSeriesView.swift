@@ -26,9 +26,11 @@ struct AllSeriesView: View {
               )
             
             ScrollView {
-                ForEach(model.series) { s in
-                    Image(s.image)
-                        .resizable()
+                
+                let seriesArr = Array(model.series.values)
+                
+                ForEach(seriesArr) { s in
+                    AsyncImage(url: URL(string: s.image))
                         .frame(width: 150, height: 200)
                         .scaledToFill()
                         .cornerRadius(5)

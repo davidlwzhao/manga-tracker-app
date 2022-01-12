@@ -8,13 +8,31 @@
 import Foundation
 
 class Series: Decodable, Identifiable {
-    var id:UUID?
-    var title:String
-    var archived:Bool
-    var updated:Bool
-    var image:String
-    var chapters:Int
-    var lastUpdate:String
-    var source: String
-    var url: String
+    var id: String = ""
+    var title: String = ""
+    var image :String = ""
+    var lastChapter: Float = 0
+    var lastReadChapter: Float = 0
+    var source: String = ""
+    var homeUrl: String = ""
+    //var lastUpdate: Update = Update()
+}
+
+class Update: Decodable, Identifiable {
+    var id: String = ""
+    var title: String = ""
+    var chapter: Float = 0
+    var url: String = ""
+    var date: String = ""
+    var source: String = ""
+}
+
+class User: Decodable, Identifiable {
+    var id: String = ""
+    var firstName: String = ""
+    var lastName: String = ""
+    
+    // are these needed?
+    var seriesReading: [Series] = [Series]() 
+    var seriesUpdates: [Update] = [Update]()
 }

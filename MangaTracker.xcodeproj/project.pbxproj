@@ -11,7 +11,6 @@
 		9E4656D5278AFD53004B0E13 /* ReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4656D4278AFD53004B0E13 /* ReadView.swift */; };
 		9E4656D7278AFE4F004B0E13 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4656D6278AFE4F004B0E13 /* WebView.swift */; };
 		9E6FFB4E278B3F69008EBFCA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E6FFB4D278B3F69008EBFCA /* GoogleService-Info.plist */; };
-		9E92B9D2278C41700080AAC0 /* updates.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E92B9D1278C41700080AAC0 /* updates.json */; };
 		9EFB0C92277F6A9B00D90390 /* MangaTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB0C91277F6A9B00D90390 /* MangaTrackerApp.swift */; };
 		9EFB0C94277F6A9B00D90390 /* AllSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB0C93277F6A9B00D90390 /* AllSeriesView.swift */; };
 		9EFB0C96277F6A9E00D90390 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFB0C95277F6A9E00D90390 /* Assets.xcassets */; };
@@ -30,7 +29,6 @@
 		9E4656D4278AFD53004B0E13 /* ReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadView.swift; sourceTree = "<group>"; };
 		9E4656D6278AFE4F004B0E13 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		9E6FFB4D278B3F69008EBFCA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9E92B9D1278C41700080AAC0 /* updates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = updates.json; sourceTree = "<group>"; };
 		9EFB0C8E277F6A9B00D90390 /* MangaTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangaTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFB0C91277F6A9B00D90390 /* MangaTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaTrackerApp.swift; sourceTree = "<group>"; };
 		9EFB0C93277F6A9B00D90390 /* AllSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSeriesView.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				9EFB0CB0277F797600D90390 /* series.json */,
-				9E92B9D1278C41700080AAC0 /* updates.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -219,7 +216,6 @@
 				9EFB0CB1277F797600D90390 /* series.json in Resources */,
 				9E6FFB4E278B3F69008EBFCA /* GoogleService-Info.plist in Resources */,
 				9EFB0C99277F6A9E00D90390 /* Preview Assets.xcassets in Resources */,
-				9E92B9D2278C41700080AAC0 /* updates.json in Resources */,
 				9EFB0C96277F6A9E00D90390 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
