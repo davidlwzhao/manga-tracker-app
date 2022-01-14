@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct LandingView: View {
+    
+    @State var currentTab: Int = 0
+    
     var body: some View {
-        TabView {
+        TabView(selection: $currentTab) {
             UpdatesView()
                 .tabItem {
                     VStack {
@@ -17,7 +20,7 @@ struct LandingView: View {
                         Text("Updates")
                     }
                 }
-                .tag(1)
+                .tag(0)
             NewSeriesView()
                 .tabItem {
                     VStack {
@@ -25,7 +28,7 @@ struct LandingView: View {
                         Text("New Series")
                     }
                 }
-                .tag(2)
+                .tag(1)
             AllSeriesView()
                 .tabItem {
                     VStack {
@@ -33,7 +36,7 @@ struct LandingView: View {
                         Text("All Series")
                     }
                 }
-                .tag(3)
+                .tag(2)
             AnalyticsView()
                 .tabItem {
                     VStack {
@@ -41,14 +44,15 @@ struct LandingView: View {
                         Text("Analytics")
                     }
                 }
-                .tag(4)
+                .tag(3)
         }
-        .environmentObject(SeriesModel())
+        //.tabViewStyle(.page(indexDisplayMode: .never))
     }
 }
 
 struct LandingView_Previews: PreviewProvider {
     static var previews: some View {
         LandingView()
+            .environmentObject(SeriesModel())
     }
 }
