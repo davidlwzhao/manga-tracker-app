@@ -21,14 +21,7 @@ struct LandingView: View {
                     }
                 }
                 .tag(0)
-            NewSeriesView()
-                .tabItem {
-                    VStack {
-                        Image(systemName: "hourglass.badge.plus")
-                        Text("New Series")
-                    }
-                }
-                .tag(1)
+            
             AllSeriesView()
                 .tabItem {
                     VStack {
@@ -36,7 +29,17 @@ struct LandingView: View {
                         Text("All Series")
                     }
                 }
+                .tag(1)
+            
+            NewSeriesView()
+                .tabItem {
+                    VStack {
+                        Image(systemName: "hourglass.badge.plus")
+                        Text("New Series")
+                    }
+                }
                 .tag(2)
+            
             AnalyticsView()
                 .tabItem {
                     VStack {

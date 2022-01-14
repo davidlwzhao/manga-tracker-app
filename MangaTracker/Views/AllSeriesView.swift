@@ -11,40 +11,41 @@ struct AllSeriesView: View {
     
     @EnvironmentObject var model: SeriesModel
     
+    let layout = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
-        VStack {
-            VStack(alignment: .leading) {
-                Text("All Series")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(.leading)
-                    .padding(.top, 40)
-            }
-            .frame(
-                minWidth: 0,
-                maxWidth: .infinity
-              )
-            
-            ScrollView {
-                
-                let seriesArr = Array(model.series.values)
-                
-                ForEach(seriesArr) { s in
-                    AsyncImage(url: URL(string: s.image))
-                        .frame(width: 150, height: 200)
-                        .scaledToFill()
-                        .cornerRadius(5)
-                    Text(s.title)
+        
+        NavigationView {
+            VStack {
+                VStack {
+                    Text("All Series")
+                        .font(.largeTitle)
+                        .foregroundColor(Color.white)
+                        .bold()
+                        .padding(.top, 20)
+                    Divider()
+                }
+                .background(.black)
+                    
+                ScrollView {
+                    LazyVGrid(columns: layout, spacing: 0) {
+                        ForEach(Array(model.series.values)) { s in
+                            NavigationLink {
+                                ReadView(url: s.homeUrl)
+                            } label: {
+                                AllSeriesCardView(s: s)
+                                    .accentColor(.black)
+                            }
+                        }
+                    }
                 }
             }
+            .navigationBarHidden(true)
         }
-        .frame(
-              minWidth: 0,
-              maxWidth: .infinity,
-              minHeight: 0,
-              maxHeight: .infinity
-            )
-
     }
 }
 

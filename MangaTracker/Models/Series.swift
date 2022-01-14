@@ -12,6 +12,7 @@ class Series: Decodable, Identifiable {
     var title: String = ""
     var image :String = ""
     var lastChapter: Float = 0
+    var timeSinceUpdate: Int = 0
     var lastReadChapter: Float = 0
     var source: String = ""
     var homeUrl: String = ""

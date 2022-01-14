@@ -111,6 +111,7 @@ class SeriesModel: ObservableObject {
                     s.title = doc["title"] as? String ?? ""
                     s.image = doc["title"] as? String ?? ""
                     s.homeUrl = doc["home_url"] as? String ?? ""
+                    s.timeSinceUpdate = 0
                     // chpt url?
                     s.source = doc["source"] as? String ?? ""
                     
