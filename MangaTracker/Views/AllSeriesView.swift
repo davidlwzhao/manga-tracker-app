@@ -35,7 +35,7 @@ struct AllSeriesView: View {
                     LazyVGrid(columns: layout, spacing: 0) {
                         ForEach(Array(model.series.values)) { s in
                             NavigationLink {
-                                ReadView(url: s.homeUrl)
+                                SeriesHomeReadView(url: s.homeUrl, title: s.title)
                             } label: {
                                 AllSeriesCardView(s: s)
                                     .accentColor(.black)

@@ -35,13 +35,18 @@ struct UpdatesView: View {
                     .background(.black)
                         
                         ScrollView {
-                            ForEach(model.updates) { u in
-                                //let s = model.series["\(u.title)-\(u.source)"]!
-                                NavigationLink {
-                                    ReadView(url: u.url)
-                                } label: {
-                                    UpdateRowView(u: u)
-                                        .accentColor(.black)
+                            LazyVStack {
+                                ForEach(model.updates) { u in
+                                    //let s = model.series["\(u.title)-\(u.source)"]!
+
+                                    NavigationLink(tag: u.id, selection: $model.currentUpdateId) {
+                                        ReadView().onAppear {
+                                            model.setCurrentUpdate(update: u)
+                                        }
+                                    } label: {
+                                        UpdateRowView(u: u)
+                                            .accentColor(.black)
+                                    }
                                 }
                             }
                         }

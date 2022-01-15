@@ -21,6 +21,11 @@ class SeriesModel: ObservableObject {
     
     @Published var series: [String: Series] = [String: Series]()
     
+    // Current update
+    @Published var currentUpdate: Update?
+    @Published var currentUpdateId: String?
+    var currentUpdateIndex = 0
+    
     // Helper properties
     var updateRefs: [String] = [String]()
     var seriesRefs: [String: Float] = [String: Float]()
@@ -31,6 +36,74 @@ class SeriesModel: ObservableObject {
         getRemoteUpdates()
         getRemoteSeries()
     }
+    
+    func removeUpdate(id:String) {
+        // logs update as read
+        
+        // updates firestore that update no longer relevant for user
+        let userRef = db.collection("users").document("dlz")
+        
+        userRef.getDocument { snapshot, error in
+            if error == nil && snapshot != nil {
+                print(snapshot!.documentID)
+                print(snapshot!.data() ?? "data")
+            }
+        }
+        
+        // removes update from array
+        for i in 0..<self.updates.count {
+            if self.updates[i].id == id {
+                self.updates.remove(at: i)
+                break
+            }
+        }
+        
+        // update self.updateRefs
+        
+    }
+    
+    func setCurrentUpdate(update: Update){
+        // removes update from array
+        for i in 0..<self.updates.count {
+            if self.updates[i].id == update.id {
+                self.currentUpdateIndex = i
+                self.currentUpdate = self.updates[i]
+            }
+        }
+    }
+    
+    func nextUpdate(remove: Bool) {
+        
+        // Advance the lesson index
+        currentUpdateIndex += 1
+        
+        // Check that it is within range
+        if currentUpdateIndex < self.updates.count {
+            
+            // Set the current lesson property
+            currentUpdate = self.updates[currentUpdateIndex]
+        }
+        else {
+            // Reset the lesson state
+            currentUpdateIndex = 0
+            currentUpdate = nil
+        }
+        
+        if remove {
+            print("remove")
+        }
+    }
+    
+    func hasNextUpdate() -> Bool {
+        
+        guard self.currentUpdate != nil else {
+            return false
+        }
+        
+        return (self.currentUpdateIndex + 1 < self.updates.count)
+    }
+    
+    // MARK: Database query functions
     
     func getRemoteUser() {
         
@@ -63,7 +136,7 @@ class SeriesModel: ObservableObject {
         
         // parse updates
         //self.updateRefs
-        let updateRef = db.collection("updates").whereField(FieldPath.documentID(), in: ["A Returner’s Magic Should Be Special -Flame Scans-174", "Worn and Torn Newbie-Asura Scans-77", "Max Level Returner -Flame Scans-138"]) //TO DO: make this 10 limit
+        let updateRef = db.collection("updates").whereField(FieldPath.documentID(), in: ["A Returner’s Magic Should Be Special-Flame Scans-174", "Worn and Torn Newbie-Asura Scans-77", "Max Level Returner-Flame Scans-138"]) //TO DO: make this 10 limit
         
         updateRef.getDocuments { snapshot, error in
             if error == nil && snapshot != nil {
@@ -83,6 +156,7 @@ class SeriesModel: ObservableObject {
                     u.source = doc["source"] as? String ?? ""
                     
                     updates.append(u)
+                    print(u.id)
                 }
                 
                 self.updates = updates

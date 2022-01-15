@@ -11,6 +11,7 @@
 		9E4656D5278AFD53004B0E13 /* ReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4656D4278AFD53004B0E13 /* ReadView.swift */; };
 		9E4656D7278AFE4F004B0E13 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4656D6278AFE4F004B0E13 /* WebView.swift */; };
 		9E67763D27922FD4007B741F /* AllSeriesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E67763C27922FD4007B741F /* AllSeriesCardView.swift */; };
+		9E67763F2792EF32007B741F /* SeriesHomeReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E67763E2792EF32007B741F /* SeriesHomeReadView.swift */; };
 		9E6FFB4E278B3F69008EBFCA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E6FFB4D278B3F69008EBFCA /* GoogleService-Info.plist */; };
 		9ECCB69F2791AA55006D74E0 /* UpdateRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECCB69E2791AA55006D74E0 /* UpdateRowView.swift */; };
 		9EFB0C92277F6A9B00D90390 /* MangaTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB0C91277F6A9B00D90390 /* MangaTrackerApp.swift */; };
@@ -31,6 +32,7 @@
 		9E4656D4278AFD53004B0E13 /* ReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadView.swift; sourceTree = "<group>"; };
 		9E4656D6278AFE4F004B0E13 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		9E67763C27922FD4007B741F /* AllSeriesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSeriesCardView.swift; sourceTree = "<group>"; };
+		9E67763E2792EF32007B741F /* SeriesHomeReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesHomeReadView.swift; sourceTree = "<group>"; };
 		9E6FFB4D278B3F69008EBFCA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9ECCB69E2791AA55006D74E0 /* UpdateRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRowView.swift; sourceTree = "<group>"; };
 		9EFB0C8E277F6A9B00D90390 /* MangaTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangaTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,12 +135,13 @@
 				9EFB0CA8277F6CAB00D90390 /* LandingView.swift */,
 				9EFB0CA5277F6C1800D90390 /* UpdatesView.swift */,
 				9ECCB69E2791AA55006D74E0 /* UpdateRowView.swift */,
-				9EFB0CA3277F6C0C00D90390 /* NewSeriesView.swift */,
-				9EFB0C93277F6A9B00D90390 /* AllSeriesView.swift */,
-				9E220E41277F9C9C001DAAB5 /* AnalyticsView.swift */,
 				9E4656D4278AFD53004B0E13 /* ReadView.swift */,
-				9E4656D6278AFE4F004B0E13 /* WebView.swift */,
+				9EFB0CA3277F6C0C00D90390 /* NewSeriesView.swift */,
+				9E220E41277F9C9C001DAAB5 /* AnalyticsView.swift */,
+				9EFB0C93277F6A9B00D90390 /* AllSeriesView.swift */,
 				9E67763C27922FD4007B741F /* AllSeriesCardView.swift */,
+				9E67763E2792EF32007B741F /* SeriesHomeReadView.swift */,
+				9E4656D6278AFE4F004B0E13 /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				9EFB0CAD277F76EC00D90390 /* SeriesModel.swift in Sources */,
 				9EFB0CA6277F6C1800D90390 /* UpdatesView.swift in Sources */,
 				9EFB0CA4277F6C0C00D90390 /* NewSeriesView.swift in Sources */,
+				9E67763F2792EF32007B741F /* SeriesHomeReadView.swift in Sources */,
 				9EFB0C92277F6A9B00D90390 /* MangaTrackerApp.swift in Sources */,
 				9EFB0CAF277F772200D90390 /* Series.swift in Sources */,
 				9E67763D27922FD4007B741F /* AllSeriesCardView.swift in Sources */,
