@@ -10,6 +10,7 @@ import SwiftUI
 struct ReadView: View {
     
     @EnvironmentObject var model: SeriesModel
+    @State var index = 0
     
     var body: some View {
         
@@ -21,24 +22,42 @@ struct ReadView: View {
                 
                 HStack (spacing: 10){
                     
-                    Button {
-                        print("prev")
-                    } label: {
-                        ZStack{
-                            Capsule()
-                                .fill(.blue)
-                            HStack {
-                                Image(systemName: "backward.end")
-                                Text("Previous")
+                    if model.hasPrevUpdate() || index > 1 {
+                        Button {
+                            if update?.chapters.count != nil {
+                                if index > 1 {
+                                    index -= 1
+                                } else {
+                                    index = 0
+                                    model.prevUpdate()
+                                }
                             }
-                            .foregroundColor(.white)
+                        } label: {
+                            ZStack{
+                                Capsule()
+                                    .fill(.blue)
+                                HStack {
+                                    Image(systemName: "backward.end")
+                                    Text("Previous")
+                                }
+                                .foregroundColor(.white)
+                            }
+                            .frame(width: 120, height:30)
                         }
-                        .frame(width: 120, height:30)
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
 
                     Button  {
-                        model.nextUpdate(remove: false)
+                        
+                        if update?.chapters.count != nil {
+                            if index + 1 < update!.chapters.count {
+                                index += 1
+                            } else {
+                                index = 0
+                                model.nextUpdate(remove: false)
+                            }
+                        }
+                        
                     } label: {
                         ZStack{
                             Capsule()
@@ -53,9 +72,17 @@ struct ReadView: View {
                     }
                     .buttonStyle(.plain)
 
-                    if model.hasNextUpdate() {
+                    // OR has another chapter
+                    if model.hasNextUpdate() || index + 1 < (update?.chapters.count ?? 0) {
                         Button  {
-                            model.nextUpdate(remove: true)
+                            if update?.chapters.count != nil {
+                                if index + 1 < update!.chapters.count {
+                                    index += 1
+                                } else {
+                                    index = 0
+                                    model.nextUpdate(remove: false)
+                                }
+                            }
                         } label: {
                             ZStack{
                                 Capsule()
@@ -74,6 +101,7 @@ struct ReadView: View {
                             model.currentUpdate = nil
                             model.currentUpdateIndex = 0
                             model.currentUpdateId = nil
+                            index = 0
                         } label: {
                             ZStack{
                                 Capsule()
@@ -93,8 +121,8 @@ struct ReadView: View {
             }
             .background(.black)
             
-            if update?.url != nil {
-                WebView(url: URL(string: update!.url)!)
+            if update?.chapters[index].url != nil {
+                WebView(url: URL(string: update!.chapters[index].url)!)
                     //.edgesIgnoringSafeArea(.bottom)
             }
         }

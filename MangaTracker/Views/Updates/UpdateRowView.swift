@@ -32,33 +32,39 @@ struct UpdateRowView: View {
                     Text("Source: \(u.source)")
                         .font(.caption)
                         .foregroundColor(.gray)
-                        .padding(.bottom, 40)
+                        .padding(.bottom, u.chapters.count > 2 ? 10 : 30)
                     
-                    ZStack {
-                        Capsule()
-                            .fill(.blue)
-                            .opacity(0.8)
-                            
-                        HStack {
-                            Spacer()
-                            Text("Chapter \(Int(u.chapter))")
-                                .foregroundColor(.white)
-                                .font(Font.system(size: 10))
-                            Spacer()
-                            Text("\(u.getTimeSinceUpdate())")
-                                .foregroundColor(.white)
-                                .font(Font.system(size: 10))
-                            Spacer()
-                        }
+                    ForEach(u.chapters){ chpt in
+                        chapterRow(chapter: chpt.chapter, since: chpt.getTimeSinceUpdate())
                     }
-                    .frame(width: 200, height: 25)
-                    
                 }
                 .padding(.leading, 10)
                 
             }
         }
         .padding(.horizontal, 5)
+    }
+    
+    @ViewBuilder
+    func chapterRow(chapter: Float, since: String) -> some View {
+        ZStack {
+            Capsule()
+                .fill(.blue)
+                .opacity(0.8)
+                
+            HStack {
+                Spacer()
+                Text("Chapter \(Int(chapter))")
+                    .foregroundColor(.white)
+                    .font(Font.system(size: 10))
+                Spacer()
+                Text("\(since)")
+                    .foregroundColor(.white)
+                    .font(Font.system(size: 10))
+                Spacer()
+            }
+        }
+        .frame(width: 200, height: 25)
     }
 }
 

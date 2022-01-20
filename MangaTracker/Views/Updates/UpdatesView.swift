@@ -15,13 +15,16 @@ struct UpdatesView: View {
         NavigationView {
             VStack(spacing: 0) {
                 TitleBarView(titleText: "Updated Series")
-                    
+                
+                // if no updates then show placeholder
+                // add number of updates as cirlce
+                
                 ScrollView {
                     LazyVStack {
                         ForEach(model.updates) { u in
 
                             NavigationLink(tag: u.id, selection: $model.currentUpdateId) {
-                                ReadView().onAppear {
+                                ReadView(index: 0).onAppear {
                                     model.setCurrentUpdate(update: u)
                                 }
                             } label: {
@@ -32,6 +35,7 @@ struct UpdatesView: View {
                     }
                 }
                 .padding()
+                
             }
             .frame(
                   maxWidth: .infinity,

@@ -22,10 +22,16 @@ class Series: Decodable, Identifiable {
 class Update: Decodable, Identifiable {
     var id: String = ""
     var title: String = ""
+    var source: String = ""
+    
+    var chapters: [ChapterUpdate] = [ChapterUpdate]()
+}
+
+class ChapterUpdate: Decodable, Identifiable {
+    var id: String = ""
     var chapter: Float = 0
     var url: String = ""
     var date: String = ""
-    var source: String = ""
     
     func getTimeSinceUpdate() -> String {
         return "1 hr ago"

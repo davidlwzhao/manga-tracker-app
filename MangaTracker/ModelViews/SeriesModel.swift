@@ -94,6 +94,24 @@ class SeriesModel: ObservableObject {
         }
     }
     
+    func prevUpdate() {
+        
+        // Advance the lesson index
+        currentUpdateIndex -= 1
+        
+        // Check that it is within range
+        if currentUpdateIndex >= 0 {
+            
+            // Set the current lesson property
+            currentUpdate = self.updates[currentUpdateIndex]
+        }
+        else {
+            // Reset the lesson state
+            currentUpdateIndex = 0
+            currentUpdate = nil
+        }
+    }
+    
     func hasNextUpdate() -> Bool {
         
         guard self.currentUpdate != nil else {
@@ -101,6 +119,15 @@ class SeriesModel: ObservableObject {
         }
         
         return (self.currentUpdateIndex + 1 < self.updates.count)
+    }
+    
+    func hasPrevUpdate() -> Bool {
+        
+        guard self.currentUpdate != nil else {
+            return false
+        }
+        
+        return (self.currentUpdateIndex - 1 >= 0)
     }
     
     // MARK: Database query functions
@@ -144,26 +171,34 @@ class SeriesModel: ObservableObject {
             updateRef.getDocuments { snapshot, error in
                 if error == nil && snapshot != nil {
                     
-                    print("reached loop")
-                    // Holder for updates
-                    var updates = [Update]()
-                    
                     // Loop through updates to build relevant ones
                     for doc in snapshot!.documents {
+                        var updateFlag = false
                         let u = Update()
+                        let c = ChapterUpdate()
                         
                         u.id = doc.documentID
-                        u.chapter = doc["last_chapter"] as? Float ?? 0
                         u.title = doc["title"] as? String ?? ""
-                        u.url = doc["chapter_url"] as? String ?? ""
-                        u.date = doc["date"] as? String ?? ""
                         u.source = doc["source"] as? String ?? ""
                         
-                        updates.append(u)
-                        print(u.id)
+                        c.url = doc["chapter_url"] as? String ?? ""
+                        c.date = doc["date"] as? String ?? ""
+                        c.chapter = doc["last_chapter"] as? Float ?? 0
+                        c.id = "\(u.title)-\(u.source)-\(c.chapter)"
+                        u.chapters.append(c)
+                        
+                        // if there's an update already for that ID then use that else just make a chapter
+                        for update in self.updates {
+                            if update.title == u.title && update.source == u.source {
+                                update.chapters.append(c)
+                                updateFlag = true
+                            }
+                        }
+                        
+                        if !updateFlag {
+                            self.updates.append(u)
+                        }
                     }
-                    
-                    self.updates += updates
                 }
             }
         }
