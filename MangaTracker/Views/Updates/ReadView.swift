@@ -54,7 +54,7 @@ struct ReadView: View {
                                 index += 1
                             } else {
                                 index = 0
-                                model.nextUpdate(remove: false)
+                                model.nextUpdate()
                             }
                         }
                         
@@ -76,11 +76,12 @@ struct ReadView: View {
                     if model.hasNextUpdate() || index + 1 < (update?.chapters.count ?? 0) {
                         Button  {
                             if update?.chapters.count != nil {
+                                model.markUpdateForRemoval(index: index)
                                 if index + 1 < update!.chapters.count {
                                     index += 1
                                 } else {
                                     index = 0
-                                    model.nextUpdate(remove: false)
+                                    model.nextUpdate()
                                 }
                             }
                         } label: {
@@ -98,6 +99,8 @@ struct ReadView: View {
                         .buttonStyle(.plain)
                     } else {
                         Button  {
+                            model.markUpdateForRemoval(index: index)
+                            model.removeUpdates()
                             model.currentUpdate = nil
                             model.currentUpdateIndex = 0
                             model.currentUpdateId = nil

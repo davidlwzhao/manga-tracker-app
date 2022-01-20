@@ -29,6 +29,7 @@ class SeriesModel: ObservableObject {
     // Helper properties
     var updateRefs: [String] = [String]()
     var seriesRefs: [String: Float] = [String: Float]()
+    var updateDeletes: [String] = [String]()
     
     init () {
         //self.series = DataService.getLocalData()
@@ -37,29 +38,45 @@ class SeriesModel: ObservableObject {
         //getRemoteSeries()
     }
     
-    func removeUpdate(id:String) {
+    func markUpdateForRemoval(index: Int){
+        if let id = self.currentUpdate?.chapters[index].id {
+            self.updateDeletes.append(id)
+        }
+    }
+    
+    func removeUpdates() {
+        
+        if self.updateDeletes.count == 0 {
+            return
+        }
+        
         // logs update as read
         
-        // updates firestore that update no longer relevant for user
-        let userRef = db.collection("users").document("dlz")
-        
-        userRef.getDocument { snapshot, error in
-            if error == nil && snapshot != nil {
-                print(snapshot!.documentID)
-                print(snapshot!.data() ?? "data")
-            }
-        }
+        var updatesToKeep:[String] = [String]()
+        var updateIdsToKeep = [Int]()
         
         // removes update from array
         for i in 0..<self.updates.count {
-            if self.updates[i].id == id {
-                self.updates.remove(at: i)
-                break
+            self.updates[i].chapters = self.updates[i].chapters.filter { !self.updateDeletes.contains($0.id) }
+            if self.updates[i].chapters.count == 0 {
+                continue
             }
+            
+            updatesToKeep += self.updates[i].chapters.map { $0.id }
+            updateIdsToKeep.append(i)
         }
         
-        // update self.updateRefs
+        self.updates = updateIdsToKeep.map { self.updates[$0] }
         
+        // updates firestore that update no longer relevant for user
+        print(self.updateRefs)
+        updatesToKeep = Array(Set(updatesToKeep))
+        print(updatesToKeep)
+        
+        db.collection("users").document(self.userId).setData([ "updates": updatesToKeep ], merge: true)
+        
+        self.updateRefs = updatesToKeep
+        self.updateDeletes = [String]()
     }
     
     func setCurrentUpdate(update: Update){
@@ -72,7 +89,7 @@ class SeriesModel: ObservableObject {
         }
     }
     
-    func nextUpdate(remove: Bool) {
+    func nextUpdate() {
         
         // Advance the lesson index
         currentUpdateIndex += 1
@@ -87,10 +104,6 @@ class SeriesModel: ObservableObject {
             // Reset the lesson state
             currentUpdateIndex = 0
             currentUpdate = nil
-        }
-        
-        if remove {
-            print("remove")
         }
     }
     
@@ -184,7 +197,7 @@ class SeriesModel: ObservableObject {
                         c.url = doc["chapter_url"] as? String ?? ""
                         c.date = doc["date"] as? String ?? ""
                         c.chapter = doc["last_chapter"] as? Float ?? 0
-                        c.id = "\(u.title)-\(u.source)-\(c.chapter)"
+                        c.id = "\(u.title)-\(u.source)-\(Int(c.chapter))"
                         u.chapters.append(c)
                         
                         // if there's an update already for that ID then use that else just make a chapter
