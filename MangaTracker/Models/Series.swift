@@ -26,6 +26,10 @@ class Update: Decodable, Identifiable {
     var url: String = ""
     var date: String = ""
     var source: String = ""
+    
+    func getTimeSinceUpdate() -> String {
+        return "1 hr ago"
+    }
 }
 
 class User: Decodable, Identifiable {

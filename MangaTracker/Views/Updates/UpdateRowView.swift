@@ -45,7 +45,7 @@ struct UpdateRowView: View {
                                 .foregroundColor(.white)
                                 .font(Font.system(size: 10))
                             Spacer()
-                            Text("\(u.date)")
+                            Text("\(u.getTimeSinceUpdate())")
                                 .foregroundColor(.white)
                                 .font(Font.system(size: 10))
                             Spacer()

@@ -17,13 +17,7 @@ struct ReadView: View {
         
         VStack {
             VStack {
-                Text(update?.title ?? "")
-                    .font(.largeTitle)
-                    .foregroundColor(Color.white)
-                    .bold()
-                    .padding(.top, 20)
-                
-                Divider()
+                TitleBarView(titleText: update?.title ?? "")
                 
                 HStack (spacing: 10){
                     

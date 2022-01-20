@@ -9,11 +9,13 @@ import SwiftUI
 
 struct LandingView: View {
     
+    @EnvironmentObject var model: SeriesModel
     @State var currentTab: Int = 0
     
     var body: some View {
         TabView(selection: $currentTab) {
             UpdatesView()
+                .modifier(BackgroundModifier())
                 .tabItem {
                     VStack {
                         Image(systemName: "clock.badge.exclamationmark")
@@ -21,8 +23,12 @@ struct LandingView: View {
                     }
                 }
                 .tag(0)
+                .onAppear {
+                    model.getRemoteUpdates()
+                }
             
             AllSeriesView()
+                .modifier(BackgroundModifier())
                 .tabItem {
                     VStack {
                         Image(systemName: "square.grid.3x3.square")
@@ -30,8 +36,12 @@ struct LandingView: View {
                     }
                 }
                 .tag(1)
+                .onAppear {
+                    model.getRemoteSeries()
+                }
             
             NewSeriesView()
+                .modifier(BackgroundModifier())
                 .tabItem {
                     VStack {
                         Image(systemName: "hourglass.badge.plus")
@@ -41,6 +51,7 @@ struct LandingView: View {
                 .tag(2)
             
             AnalyticsView()
+                .modifier(BackgroundModifier())
                 .tabItem {
                     VStack {
                         Image(systemName: "chart.xyaxis.line")
@@ -50,6 +61,14 @@ struct LandingView: View {
                 .tag(3)
         }
         //.tabViewStyle(.page(indexDisplayMode: .never))
+    }
+}
+
+struct BackgroundModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.gray.opacity(0.20).ignoresSafeArea())
     }
 }
 

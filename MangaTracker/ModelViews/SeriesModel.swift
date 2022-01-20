@@ -33,8 +33,8 @@ class SeriesModel: ObservableObject {
     init () {
         //self.series = DataService.getLocalData()
         getRemoteUser()
-        getRemoteUpdates()
-        getRemoteSeries()
+        //getRemoteUpdates()
+        //getRemoteSeries()
     }
     
     func removeUpdate(id:String) {
@@ -135,64 +135,68 @@ class SeriesModel: ObservableObject {
     func getRemoteUpdates() {
         
         // parse updates
-        //self.updateRefs
-        let updateRef = db.collection("updates").whereField(FieldPath.documentID(), in: ["A Returner’s Magic Should Be Special-Flame Scans-174", "Worn and Torn Newbie-Asura Scans-77", "Max Level Returner-Flame Scans-138"]) //TO DO: make this 10 limit
+        var refs = [Query]()
+        for search in self.updateRefs.chunked(into: 10) {
+            refs.append(db.collection("updates").whereField(FieldPath.documentID(), in: search))
+        }
         
-        updateRef.getDocuments { snapshot, error in
-            if error == nil && snapshot != nil {
-                
-                // Holder for updates
-                var updates = [Update]()
-                
-                // Loop through updates to build relevant ones
-                for doc in snapshot!.documents {
-                    let u = Update()
+        for updateRef in refs {
+            updateRef.getDocuments { snapshot, error in
+                if error == nil && snapshot != nil {
                     
-                    u.id = doc.documentID
-                    u.chapter = doc["last_chapter"] as? Float ?? 0
-                    u.title = doc["title"] as? String ?? ""
-                    u.url = doc["chapter_url"] as? String ?? ""
-                    u.date = doc["date"] as? String ?? ""
-                    u.source = doc["source"] as? String ?? ""
+                    print("reached loop")
+                    // Holder for updates
+                    var updates = [Update]()
                     
-                    updates.append(u)
-                    print(u.id)
+                    // Loop through updates to build relevant ones
+                    for doc in snapshot!.documents {
+                        let u = Update()
+                        
+                        u.id = doc.documentID
+                        u.chapter = doc["last_chapter"] as? Float ?? 0
+                        u.title = doc["title"] as? String ?? ""
+                        u.url = doc["chapter_url"] as? String ?? ""
+                        u.date = doc["date"] as? String ?? ""
+                        u.source = doc["source"] as? String ?? ""
+                        
+                        updates.append(u)
+                        print(u.id)
+                    }
+                    
+                    self.updates += updates
                 }
-                
-                self.updates = updates
             }
         }
     }
      
     func getRemoteSeries() {
         // parsing series
-        //Array(self.seriesRefs.keys)
-        let seriesRef = db.collection("series").whereField(FieldPath.documentID(), in: ["Worn and Torn Newbie-Asura Scans", "A Returner’s Magic Should Be Special-Flame Scans", "Max Level Returner-Flame Scans"])
+        var refs = [Query]()
+        for search in Array(self.seriesRefs.keys).chunked(into: 10) {
+            refs.append(db.collection("series").whereField(FieldPath.documentID(), in: search))
+        }
         
-        seriesRef.getDocuments { snapshot, error in
-            if error == nil && snapshot != nil {
-                
-                // Holder for updates
-                var series = [String: Series]()
-                
-                // Loop through series to build relevant ones
-                for doc in snapshot!.documents {
-                    let s = Series()
+        for seriesRef in refs {
+            seriesRef.getDocuments { snapshot, error in
+                if error == nil && snapshot != nil {
                     
-                    s.id = doc.documentID
-                    s.lastChapter = doc["last_chapter"] as? Float ?? 0
-                    s.lastReadChapter = self.seriesRefs[s.id] ?? 0
-                    s.title = doc["title"] as? String ?? ""
-                    s.image = doc["title"] as? String ?? ""
-                    s.homeUrl = doc["home_url"] as? String ?? ""
-                    s.timeSinceUpdate = 0
-                    // chpt url?
-                    s.source = doc["source"] as? String ?? ""
-                    
-                    series[s.id] = s
+                    // Loop through series to build relevant ones
+                    for doc in snapshot!.documents {
+                        let s = Series()
+                        
+                        s.id = doc.documentID
+                        s.lastChapter = doc["last_chapter"] as? Float ?? 0
+                        s.lastReadChapter = self.seriesRefs[s.id] ?? 0
+                        s.title = doc["title"] as? String ?? ""
+                        s.image = doc["title"] as? String ?? ""
+                        s.homeUrl = doc["home_url"] as? String ?? ""
+                        s.timeSinceUpdate = 0
+                        // chpt url?
+                        s.source = doc["source"] as? String ?? ""
+                        
+                        self.series[s.id] = s
+                    }
                 }
-            
-                self.series = series
             }
         }
     }
