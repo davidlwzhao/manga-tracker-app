@@ -21,15 +21,7 @@ struct AllSeriesView: View {
         
         NavigationView {
             VStack {
-                VStack {
-                    Text("All Series")
-                        .font(.largeTitle)
-                        .foregroundColor(Color.white)
-                        .bold()
-                        .padding(.top, 20)
-                    Divider()
-                }
-                .background(.black)
+                TitleBarView(titleText: "All Series")
                     
                 ScrollView {
                     LazyVGrid(columns: layout, spacing: 0) {

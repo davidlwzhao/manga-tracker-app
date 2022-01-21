@@ -72,11 +72,11 @@ struct ReadView: View {
                     }
                     .buttonStyle(.plain)
 
-                    // OR has another chapter
                     if model.hasNextUpdate() || index + 1 < (update?.chapters.count ?? 0) {
                         Button  {
                             if update?.chapters.count != nil {
                                 model.markUpdateForRemoval(index: index)
+                                // TO DO : Add in update to series latest chpt
                                 if index + 1 < update!.chapters.count {
                                     index += 1
                                 } else {

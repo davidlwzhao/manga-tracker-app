@@ -177,6 +177,7 @@ class SeriesModel: ObservableObject {
         // parse updates
         var refs = [Query]()
         for search in self.updateRefs.chunked(into: 10) {
+            //print(search)
             refs.append(db.collection("updates").whereField(FieldPath.documentID(), in: search))
         }
         
@@ -186,6 +187,7 @@ class SeriesModel: ObservableObject {
                     
                     // Loop through updates to build relevant ones
                     for doc in snapshot!.documents {
+                        //print(doc.documentID)
                         var updateFlag = false
                         let u = Update()
                         let c = ChapterUpdate()
@@ -236,11 +238,13 @@ class SeriesModel: ObservableObject {
                         s.lastChapter = doc["last_chapter"] as? Float ?? 0
                         s.lastReadChapter = self.seriesRefs[s.id] ?? 0
                         s.title = doc["title"] as? String ?? ""
-                        s.image = doc["title"] as? String ?? ""
+                        
                         s.homeUrl = doc["home_url"] as? String ?? ""
+                        s.new = doc["new_series"] as? Bool ?? false
                         s.timeSinceUpdate = 0
                         // chpt url?
                         s.source = doc["source"] as? String ?? ""
+                        s.image = "\(s.title)-\(s.source)"
                         
                         self.series[s.id] = s
                     }

@@ -9,7 +9,21 @@ import SwiftUI
 
 struct AnalyticsView: View {
     var body: some View {
-        TitleBarView(titleText: "Analytics")
+        VStack {
+            TitleBarView(titleText: "Analytics")
+            
+            Button("Visit Site") {
+                
+            }
+            .padding(.horizontal, 15)
+            .padding(.vertical, 5)
+            .font(Font.system(size: 10).bold())
+            .background(Color.blue.opacity(1))
+            .clipShape(Capsule())
+            .foregroundColor(.white)
+            
+        }
+        
     }
 }
 

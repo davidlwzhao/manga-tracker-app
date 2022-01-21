@@ -16,6 +16,7 @@ class Series: Decodable, Identifiable {
     var lastReadChapter: Float = 0
     var source: String = ""
     var homeUrl: String = ""
+    var new: Bool = false
     //var lastUpdate: Update = Update()
 }
 

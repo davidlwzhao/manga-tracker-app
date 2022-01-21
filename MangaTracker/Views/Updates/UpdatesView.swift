@@ -40,6 +40,7 @@ struct UpdatesView: View {
                             ForEach(model.updates) { u in
 
                                 NavigationLink(tag: u.id, selection: $model.currentUpdateId) {
+                                    // might not be 0
                                     ReadView(index: 0).onAppear {
                                         model.setCurrentUpdate(update: u)
                                     }
