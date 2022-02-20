@@ -29,8 +29,16 @@ struct AllSeriesView: View {
                             NavigationLink {
                                 SeriesHomeReadView(url: s.homeUrl, title: s.title)
                             } label: {
-                                AllSeriesCardView(s: s)
-                                    .accentColor(.black)
+                                VStack {
+                                    AllSeriesCardView(s: s)
+                                        .accentColor(.black)
+                                    HStack {
+                                        Button("Delete") {
+                                            model.removeSeries(series: s)
+                                        }
+                                        .modifier(ButtonModifier())
+                                    }
+                                }
                             }
                         }
                     }

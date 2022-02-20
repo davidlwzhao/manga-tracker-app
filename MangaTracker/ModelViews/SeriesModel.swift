@@ -19,6 +19,8 @@ class SeriesModel: ObservableObject {
     
     @Published var updates:[Update] = [Update]()
     
+    @Published var newSeries:[Series] = [Series]()
+    
     @Published var series: [String: Series] = [String: Series]()
     
     // Current update
@@ -28,15 +30,99 @@ class SeriesModel: ObservableObject {
     
     // Helper properties
     var updateRefs: [String] = [String]()
+    var newRefs: [String] = [String]()
     var seriesRefs: [String: Float] = [String: Float]()
     var updateDeletes: [String] = [String]()
     
     init () {
-        //self.series = DataService.getLocalData()
         getRemoteUser()
-        //getRemoteUpdates()
-        //getRemoteSeries()
     }
+    
+    // MARK: ALL Series helper functions
+    func removeSeries(series: Series){
+        // remove reference to series
+        self.seriesRefs.removeValue(forKey: series.id)
+        self.series.removeValue(forKey: series.id)
+        
+        // push update to firestore
+        db.collection("users").document(self.userId).updateData([
+            "series_reading": self.seriesRefs
+        ]) { err in
+            if let err = err {
+                print("Error updating user document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        db.collection("series").document(series.id).updateData([
+            "users": FieldValue.arrayRemove([self.userId])
+        ]) { err in
+            if let err = err {
+                print("Error updating series document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    // MARK: New Series helper functions
+    
+    func addNewSeries(series: Series){
+        // remove from new_series list
+        self.newSeries = self.newSeries.filter { $0.id != series.id }
+        self.newRefs = self.newRefs.filter { $0 != series.id }
+        
+        // add to reading list
+        self.seriesRefs[series.id] = 1
+        self.series[series.id] = series
+        
+        // push update to firestore
+        db.collection("users").document(self.userId).updateData([
+            "new_series": FieldValue.arrayRemove([series.id]),
+            "series_reading": self.seriesRefs
+        ]) { err in
+            if let err = err {
+                print("Error updating user document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        db.collection("series").document(series.id).updateData([
+            "users": FieldValue.arrayUnion([self.userId])
+        ]) { err in
+            if let err = err {
+                print("Error updating series document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        // some feedback to show this
+        
+    }
+    
+    func removeNewSeries(series: Series){
+        // remove from new_series list
+        self.newSeries = self.newSeries.filter { $0.id != series.id }
+        self.newRefs = self.newRefs.filter { $0 != series.id }
+        
+        // push update to firestore
+        db.collection("users").document(self.userId).updateData([
+            "new_series": FieldValue.arrayRemove([series.id])
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        // some feedback to show this
+
+    }
+    
+    // MARK: Update helper functions
     
     func markUpdateForRemoval(index: Int){
         if let id = self.currentUpdate?.chapters[index].id {
@@ -161,6 +247,7 @@ class SeriesModel: ObservableObject {
                     userObj.lastName = document["last_name"] as? String ?? ""
                     
                     self.updateRefs = document["updates"] as? [String] ?? [""]
+                    self.newRefs = document["new_series"] as? [String] ?? [""]
                     self.seriesRefs = document["series_reading"] as? [String: Float] ?? ["": 0]
                     
                     self.user = userObj
@@ -247,6 +334,40 @@ class SeriesModel: ObservableObject {
                         s.image = "\(s.title)-\(s.source)"
                         
                         self.series[s.id] = s
+                    }
+                }
+            }
+        }
+    }
+    
+    func getRemoteNewSeries() {
+        // parsing series
+        var refs = [Query]()
+        for search in Array(self.newRefs).chunked(into: 10) {
+            refs.append(db.collection("series").whereField(FieldPath.documentID(), in: search))
+        }
+        
+        for seriesRef in refs {
+            seriesRef.getDocuments { snapshot, error in
+                if error == nil && snapshot != nil {
+                    
+                    // Loop through series to build relevant ones
+                    for doc in snapshot!.documents {
+                        let s = Series()
+                        
+                        s.id = doc.documentID
+                        s.lastChapter = doc["last_chapter"] as? Float ?? 0
+                        s.lastReadChapter = 0
+                        s.title = doc["title"] as? String ?? ""
+                        
+                        s.homeUrl = doc["home_url"] as? String ?? ""
+                        s.new = doc["new_series"] as? Bool ?? false
+                        s.timeSinceUpdate = 0
+                        // chpt url?
+                        s.source = doc["source"] as? String ?? ""
+                        s.image = "\(s.title)-\(s.source)"
+                        
+                        self.newSeries.append(s)
                     }
                 }
             }

@@ -49,6 +49,9 @@ struct LandingView: View {
                     }
                 }
                 .tag(2)
+                .onAppear {
+                    model.getRemoteNewSeries()
+                }
             
             AnalyticsView()
                 .modifier(BackgroundModifier())

@@ -29,6 +29,6 @@ struct SeriesHomeReadView: View {
             WebView(url: URL(string: url)!)
                 //.edgesIgnoringSafeArea(.bottom)
         }
-        .navigationBarHidden(true)
+        .navigationBarHidden(false)
     }
 }
